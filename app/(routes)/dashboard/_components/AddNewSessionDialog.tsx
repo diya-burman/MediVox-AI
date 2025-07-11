@@ -1,15 +1,21 @@
-import React from "react";
+'use client'
+import React, { useState } from "react";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { DialogClose } from "@radix-ui/react-dialog";
+import { ArrowRight } from "lucide-react";
 
 function AddNewSessionDialog() {
+  const [note,setNote]=useState <string> ();
   return (
     <Dialog>
       <DialogTrigger>
@@ -17,12 +23,26 @@ function AddNewSessionDialog() {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+          <DialogTitle>Add Basic Details</DialogTitle>
+          <DialogDescription asChild>
+            <div>
+              <h2>Add Symptoms or Any Other Details</h2>
+              <Textarea
+                placeholder="Add Detail here..."
+                className="h-[200px] mt-1"
+                onChange={(e)=>setNote(e.target.value)}
+              />
+            </div>
           </DialogDescription>
         </DialogHeader>
+        <DialogFooter>
+          <DialogClose>
+            <Button variant={"outline"}>Cancel</Button>
+          </DialogClose>
+          <Button disabled={!note}>
+            Next <ArrowRight />
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
