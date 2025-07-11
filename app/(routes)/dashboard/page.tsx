@@ -1,6 +1,7 @@
 import React from "react";
 import HistoryList from "./_components/HistoryList";
 import { Button } from "@/components/ui/button";
+import DoctorsAgentList from "./_components/DoctorsAgentList";
 
 const Dashboard = () => {
   return (
@@ -10,6 +11,7 @@ const Dashboard = () => {
         <Button>+ Consult With Doctor</Button>
       </div>
       <HistoryList />
+      <DoctorsAgentList />
     </div>
   );
 };
