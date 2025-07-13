@@ -1,11 +1,14 @@
-import React from 'react'
+"use client";
+import { useParams } from "next/navigation";
+import React from "react";
 
 function MedicalVoiceAgent() {
-  return (
-    <div>
-      MedicalVoiceAgent
-    </div>
-  )
+  const { sessionId } = useParams();
+
+  const GetSessionDetails=()=>{
+    
+  }
+  return <div>{sessionId}</div>;
 }
 
-export default MedicalVoiceAgent
+export default MedicalVoiceAgent;
