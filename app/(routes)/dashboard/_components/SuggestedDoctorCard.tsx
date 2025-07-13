@@ -21,8 +21,8 @@ function SuggestedDoctorCard({
       onClick={() => setSelectedDoctor(doctorAgent)}
     >
       <Image
-        src={doctorAgent.image}
-        alt={doctorAgent.specialist}
+        src={doctorAgent?.image}
+        alt={doctorAgent?.specialist}
         height={70}
         width={70}
         className="w-[50px] h-[50px] rounded-4xl object-cover"

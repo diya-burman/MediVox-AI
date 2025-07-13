@@ -16,13 +16,14 @@ import { ArrowRight, Loader2 } from "lucide-react";
 import axios from "axios";
 import DoctorAgentCard, { doctorAgent } from "./DoctorAgentCard";
 import SuggestedDoctorCard from "./SuggestedDoctorCard";
+import { useRouter } from "next/navigation";
 
 function AddNewSessionDialog() {
   const [note, setNote] = useState<string>();
   const [loading, setLoading] = useState(false);
   const [suggestedDoctors, setSuggestedDoctors] = useState<doctorAgent[]>();
   const [selectedDoctor, setSelectedDoctor] = useState<doctorAgent>();
-
+  const router=useRouter();
   const OnClickNext = async () => {
     setLoading(true);
     try {
@@ -47,7 +48,8 @@ function AddNewSessionDialog() {
       console.log(result.data);
       if (result.data?.sessionId) {
         console.log("Session ID:", result.data.sessionId);
-        // TODO: Navigate to session screen
+        // Route new Conversation Screen
+        router.push('/dashboard/medical-agent/'+result.data.sessionId)
       }
     } catch (error) {
       console.error("Error starting consultation:", error);
