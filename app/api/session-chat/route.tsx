@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 import { db } from "@/config/db";
 import { NextRequest, NextResponse } from "next/server";
 import { SessionChatTable } from "@/config/schema";
@@ -18,54 +18,40 @@ export async function POST(req: NextRequest) {
         notes: notes,
         selectedDoctor: selectedDoctor,
         createdOn: new Date().toString(),
-        //@ts-ignore
-      }).returning({ SessionChatTable });
-    return NextResponse.json(result[0]?.SessionChatTable);
+      })
+      .returning(); // returns the inserted row(s)
+
+    return NextResponse.json(result[0]);
   } catch (e) {
-    return NextResponse.json(e);
+    return NextResponse.json({ error: e });
   }
 }
-
 
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
     const sessionId = searchParams.get("sessionId");
-
-    if (!sessionId) {
-      return NextResponse.json({ error: "Missing sessionId" }, { status: 400 });
-    }
-
     const user = await currentUser();
 
-    if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (sessionId === 'all') {
+      const result = await db
+        .select()
+        .from(SessionChatTable)
+        //@ts-ignore
+        .where(eq(SessionChatTable.createdBy, user?.primaryEmailAddress?.emailAddress))
+        .orderBy(desc(SessionChatTable.id));
+
+      return NextResponse.json(result);
+    } else {
+      const result = await db
+        .select()
+        .from(SessionChatTable)
+        //@ts-ignore
+        .where(eq(SessionChatTable.sessionId, sessionId));
+
+      return NextResponse.json(result[0]);
     }
-
-    const result = await db
-      .select()
-      .from(SessionChatTable)
-      .where(eq(SessionChatTable.sessionId, sessionId));
-
-    if (!result || result.length === 0) {
-      return NextResponse.json({ error: "Session not found" }, { status: 404 });
-    }
-
-    return NextResponse.json(result[0]);
-  } catch (error) {
-    console.error("GET /api/session-chat error:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  } catch (e) {
+    return NextResponse.json({ error: e });
   }
 }
-
-
-// export async function GET(req: NextRequest) {
-//   const { searchParams } = new URL(req.url);
-//   const sessionId = searchParams.get("sessionId");
-//   const user=await currentUser();
-//   const result=await db.select().from(SessionChatTable)
-//     //@ts-ignore
-//     .where(eq(SessionChatTable.sessionId,sessionId));
-
-//   return NextResponse.json(result[0]);
-// }
