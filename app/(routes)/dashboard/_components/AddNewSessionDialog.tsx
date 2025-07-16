@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -17,13 +17,30 @@ import axios from "axios";
 import DoctorAgentCard, { doctorAgent } from "./DoctorAgentCard";
 import SuggestedDoctorCard from "./SuggestedDoctorCard";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@clerk/nextjs";
+import { SessionDetail } from "../medical-agent/[sessionId]/page";
 
 function AddNewSessionDialog() {
   const [note, setNote] = useState<string>();
   const [loading, setLoading] = useState(false);
   const [suggestedDoctors, setSuggestedDoctors] = useState<doctorAgent[]>();
   const [selectedDoctor, setSelectedDoctor] = useState<doctorAgent>();
-  const router=useRouter();
+  const router = useRouter();
+  const [historyList, setHistoryList] = useState<SessionDetail[]>([]);
+
+  const { has } = useAuth();
+  //@ts-ignore
+  const paidUser = has && has({ plan: "pro" });
+  useEffect(() => {
+    GetHistoryList();
+  }, []);
+
+  const GetHistoryList = async () => {
+    const result = await axios.get("/api/session-chat?sessionId=all");
+    console.log(result.data);
+    setHistoryList(result.data);
+  };
+
   const OnClickNext = async () => {
     setLoading(true);
     try {
@@ -49,7 +66,7 @@ function AddNewSessionDialog() {
       if (result.data?.sessionId) {
         console.log("Session ID:", result.data.sessionId);
         // Route new Conversation Screen
-        router.push('/dashboard/medical-agent/'+result.data.sessionId)
+        router.push("/dashboard/medical-agent/" + result.data.sessionId);
       }
     } catch (error) {
       console.error("Error starting consultation:", error);
@@ -60,13 +77,19 @@ function AddNewSessionDialog() {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button className="mt-3">+ Start a Consultation</Button>
+        <Button
+          className="mt-3"
+          disabled={!paidUser && historyList?.length >= 1}
+        >
+          + Start a Consultation
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Add Basic Details</DialogTitle>
           <DialogDescription asChild>
-            {!Array.isArray(suggestedDoctors) || suggestedDoctors.length === 0 ? (
+            {!Array.isArray(suggestedDoctors) ||
+            suggestedDoctors.length === 0 ? (
               <div>
                 <h2>Add Symptoms or Any Other Details</h2>
                 <Textarea
