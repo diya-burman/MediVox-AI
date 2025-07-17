@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MediVox AI 🩺
+
+MediVox AI is a modern healthcare web application that provides voice-first AI medical assistance. It allows users to have real-time voice conversations with AI-powered specialist doctors, automates medical report generation, and simplifies patient care workflows. The platform supports appointment scheduling, consultation history tracking, and premium subscription features.
+
+## Features
+
+- AI Voice Consultation: Have natural voice conversations with AI medical specialists powered by OpenAI and Vapi.
+- Automated Report Generation: Instant medical summaries based on the consultation transcript.
+- Consultation History: View past sessions with summaries and doctor details.
+- Doctor Suggestions: Get AI-recommended doctors based on symptoms.
+- Authentication: Seamless sign-in and sign-up flow using Clerk.
+- Premium Access: Subscription management using Clerk's pricing plans.
+
+## Tech Stack
+
+- **Frontend**: Next.js 15, TypeScript, TailwindCSS, Clerk Authentication
+- **Backend**: Next.js API routes, Drizzle ORM, NeonDB (PostgreSQL), OpenAI API, Vapi AI
+- **State Management**: React Context API
+- **Voice Assistant**: Vapi AI integration with OpenAI GPT-4
 
 ## Getting Started
-
-First, run the development server:
-
+- Clone the Repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/medivox-ai.git
+cd medivox-ai
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Install Dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Configure Environment Variables
+```env
+DATABASE_URL=your_postgresql_connection_url
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+NEXT_PUBLIC_VAPI_KEY=your_vapi_key
+OPENAI_API_KEY=your_openai_api_key
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Run Development Server
+```bash
+npm run dev
+```
 
-## Learn More
+- Run Development Server
+```bash
+npm run dev
+```
+Visit http://localhost:3000 to see it in action.
 
-To learn more about Next.js, take a look at the following resources:
+## Database Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The project uses Drizzle ORM and NeonDB (PostgreSQL) for database management.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- To generate types and migrations:
+```bash
+npx drizzle-kit generate
+```
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Apply migrations to your database accordingly.
