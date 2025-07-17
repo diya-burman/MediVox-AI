@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { SessionDetail } from "../medical-agent/[sessionId]/page";
+import { SessionDetail } from "../medical-agent/types";
 import { Button } from "@/components/ui/button";
 import moment from 'moment';
 import ViewReportDialog from "./ViewReportDialog";

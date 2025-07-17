@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import moment from "moment";
-import { SessionDetail } from "../medical-agent/[sessionId]/page";
+import { SessionDetail } from "../medical-agent/types";
 
 type Props = {
   record: SessionDetail;
