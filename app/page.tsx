@@ -44,7 +44,7 @@ const Navbar = () => {
 
 // --- Footer ---
 const Footer = () => (
-  <footer className="bg-blue-50 py-12 mt-12 w-full">
+  <footer className="bg-teal-50 py-12 mt-12 w-full">
     <div className="container mx-auto px-4 text-center text-gray-600">
       <p className="text-sm md:text-base mb-2">
         © {new Date().getFullYear()} <strong>MediVox AI</strong>. All rights reserved.
