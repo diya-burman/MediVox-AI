@@ -4,7 +4,7 @@ import { UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
 
 const menuOptions = [
-  { id: 1, name: 'Home', path: '/dashboard' },
+  { id: 1, name: 'Home', path: '/' },
   { id: 2, name: 'History', path: '/dashboard/history' },
   { id: 4, name: 'Pricing', path: '/dashboard/billing' },
 ];

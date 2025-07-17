@@ -26,7 +26,7 @@ const Navbar = () => {
 
       {!isMounted ? null : !user ? (
         <Link href="/sign-in">
-          <button className="w-24 transform rounded-lg bg-black px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800 md:w-32 dark:bg-white dark:text-black dark:hover:bg-gray-200">
+          <button className="w-24 transform rounded-lg bg-teal-600 px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-teal-700 md:w-32 dark:bg-white dark:text-black dark:hover:bg-gray-200">
             Login
           </button>
         </Link>
@@ -34,7 +34,7 @@ const Navbar = () => {
         <div className="flex gap-5 items-center">
           <UserButton />
           <Link href="/dashboard">
-            <Button>Dashboard</Button>
+            <Button className="bg-teal-600 text-white hover:bg-teal-700 dark:bg-white dark:text-black dark:hover:bg-gray-200">Dashboard</Button>
           </Link>
         </div>
       )}
@@ -135,14 +135,14 @@ export default function LandingPage() {
           conversations. Automate appointment scheduling, symptom triage, and follow-up care 24/7.
         </motion.p>
 
-        <Link href={"/sign-in"}>
+        <Link href={"/dashboard"}>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 1 }}
             className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4"
           >
-            <button className="w-60 transform rounded-lg bg-black px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
+            <button className="w-60 transform rounded-lg bg-teal-600 px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-teal-700 dark:bg-white dark:text-black dark:hover:bg-gray-200">
               Get Started
             </button>
           </motion.div>
@@ -150,7 +150,7 @@ export default function LandingPage() {
       </main>
 
       {/* Features Section */}
-      <section id="features" className="py-24 w-full bg-blue-50">
+      <section id="features" className="py-24 w-full bg-teal-50">
         <div className="container mx-auto px-4">
           <motion.h2
             className="text-4xl font-bold text-center mb-16 text-black"
@@ -173,7 +173,7 @@ export default function LandingPage() {
                 className="p-6 bg-white rounded-xl shadow hover:shadow-lg transition"
               >
                 <div className="text-center space-y-4">
-                  <feature.icon className="mx-auto text-5xl text-blue-600" />
+                  <feature.icon className="mx-auto text-5xl text-teal-600" />
                   <h3 className="text-xl font-semibold text-black">
                     {feature.title}
                   </h3>
@@ -186,7 +186,7 @@ export default function LandingPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-blue-500 w-full">
+      <section className="py-20 bg-teal-600 w-full">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl font-bold text-white mb-4">
             Empower Your Practice with MediVox AI
@@ -198,7 +198,7 @@ export default function LandingPage() {
           <Link href="/dashboard">
             <Button
               size="lg"
-              className="bg-white text-blue-600 hover:bg-blue-50 animate-bounce"
+              className="bg-white text-teal-500 hover:bg-blue-50 animate-bounce"
             >
               Explore Dashboard
             </Button>
