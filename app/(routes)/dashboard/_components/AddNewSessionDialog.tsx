@@ -18,7 +18,7 @@ import DoctorAgentCard, { doctorAgent } from "./DoctorAgentCard";
 import SuggestedDoctorCard from "./SuggestedDoctorCard";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
-import { SessionDetail } from "../medical-agent/[sessionId]/page";
+import { SessionDetail } from "../medical-agent/types";
 
 function AddNewSessionDialog() {
   const [note, setNote] = useState<string>();

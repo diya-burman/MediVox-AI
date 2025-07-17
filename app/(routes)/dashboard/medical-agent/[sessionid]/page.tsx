@@ -9,16 +9,7 @@ import { Button } from "@/components/ui/button";
 import Vapi from "@vapi-ai/web";
 import Provider from "@/app/provider";
 import { toast } from "sonner";
-
-export type SessionDetail = {
-  id: number;
-  notes: string;
-  sessionId: string;
-  report: JSON;
-  selectedDoctor: doctorAgent;
-  createdOn: string;
-  voiceId?: string;
-};
+import { SessionDetail } from "../types";
 
 type messages = {
   role: string;
