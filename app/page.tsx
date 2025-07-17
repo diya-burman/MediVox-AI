@@ -52,25 +52,6 @@ const Footer = () => (
       <p className="text-sm md:text-base mb-4">
         Empowering modern healthcare with voice-first AI assistance.
       </p>
-      <div className="flex justify-center items-center gap-3 text-sm text-blue-600">
-        <a
-          href="https://www.linkedin.com/in/diya-burman-13981b262/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:underline"
-        >
-          LinkedIn
-        </a>
-        <span>•</span>
-        <a
-          href="https://github.com/diya-burman"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:underline"
-        >
-          GitHub
-        </a>
-      </div>
     </div>
   </footer>
 );
